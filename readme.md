@@ -1,8 +1,13 @@
 todo for the page generator.
 
-jekyll, yeoman or smth else?
+Blogs to converts:
+ahtik.com, timegt.com, codehoop.com
 
-how to import files from wp to json (98 published, 25 drafts)
+Gen stack
+jekyll, yeoman or smth else?
+Automatically with travis-ci?
+
+How to import files from wp to json (98 published, 25 drafts)
 
 TODO
 
