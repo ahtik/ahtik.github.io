@@ -6,6 +6,8 @@ ahtik.com, timegt.com, codehoop.com
 Gen stack
 jekyll, yeoman or smth else?
 Automatically with travis-ci?
+Try out https://github.com/getpelican/pelican it has wordpress import.
+
 
 How to import files from wp to json (98 published, 25 drafts)
 
