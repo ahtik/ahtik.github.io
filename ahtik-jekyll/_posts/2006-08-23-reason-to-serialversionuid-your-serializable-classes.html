@@ -1,0 +1,15 @@
+---
+layout: post
+title: Reason to serialVersionUID your serializable classes
+categories:
+- Java
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '248482905'
+---
+Quoting <a target="_blank" href="http://wiki.eclipse.org/index.php/FAQ_Why_does_the_Eclipse_compiler_create_a_different_serialVersionUID_from_javac%3F">Eclipse FAQ</a>: "When classes compiled in Eclipse are written to an object stream, you may not be able to read them back in a program  that was compiled elsewhere.  Many people blame this on the Eclipse compiler,  assuming that it is somehow not conforming properly to spec.  In fact, this can be a problem between any two compilers or even two versions of a compiler provided by the same vendor.   <strong>If you need object serialization, the <em>only</em> way to be safe is to explicitly define the <tt>serialVersionUID</tt> in your code!</strong> /.../ Bottom line: Always define the <tt>serialVersionUID</tt> explicitly in your source files."
+
+My question is: can there be an audit to automatically detect source files where you explicitly defined serialVersionUID that is out of date? A nice-to-have addition would be a quick-fix for repairing serialVersionUID. Current eclipse quick-fix supports only generating serialVersionUID from scratch.

@@ -1,0 +1,26 @@
+---
+layout: post
+title: Enabling 3D with ATI and NVIDIA - ubuntu and debian
+categories:
+- Tips
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  dsq_thread_id: '248483100'
+---
+<b>hmm.. getting 3D enabled for ATI and NVIDIA is still very tricky. With ubuntu you can recompile a kernel package AND/OR recompile restricted modules AND/OR compile a custom kernel with ATI/NVIDIA modules. There are 4-5 different options for getting it done. Each has it's drawbacks. And even after spending lot of time figuring it out - next time you update the kernel, you're screwed again :)</b>
+
+You can scratch your head for hours wondering why everything should work but glxinfo shows Mesa as active driver. You need direct rendering! Even if you're not playing any games. 2D rendering saves a lot of CPU and linux runs much faster.
+
+For ATI, when you download the linux proprietary driver installer - I've never seen it working without any special tweaks. Plus their installation guide is quite out-dated and not in sync with the real installer.
+
+SO - Here's the lifesaver - <a href="http://www.albertomilone.com/nvidia_scripts1.html">Envy</a>! It's a small utility that takes care of these tweaks and with a very simple user-interface fetches all the important packages, installs all the properietary stuff and makes sure that conflicting drivers are disabled/uninstalled/removed.
+
+I gave it a try and - this thingy started from scratch and - <b>I was done in 5minutes - everything working great!</b>
+
+<p><img src="http://ahtik.com/blog/wp-content/uploads/2008/02/Screenshot-Envy.png"/><br/>
+<i>Envy main screen</i>
+</p>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Rethinking Model-Driven Development</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Rethinking Model-Driven Development</h2>
+<p class="meta">10 May 2006</p>
+
+<div class="post">
+Model-driven development has it's drawbacks and promises. And most importantly - solutions.
+
+This short-essay provides different angle on the problem associated with a feature called round-tring engineering.
+<!--more-->
+
+<strong>BACKGROUND</strong>
+
+Model-Driven development is a method of development where domain/business objects are modelled as a UML class-diagram having various attributes (called <em>stereotypes</em>) set.
+
+UML model is then transformed into an intermediate model and using  various templatings these diagrams will be converted executable java files (domain objects, dao impls etc), jsp user-forms etc.
+
+Please note that this technology is not here because class-diagrams look so cool and it's easier to draw than write! Model-driven is more about having one initial object-model that can be converted into many different artifact types (domain models, daos, jsp pages).
+
+Think of it as java language having annotations for providing hibernate db persistnace or javadoc comments. In that sense, java code can (and is) also used as object meta-model.
+
+<strong>NOW LET'S RE-THINK!</strong>
+
+I believe there are two major reasons (in addition to learning-curve and performance concerns) why UML meta-model model-driven technology is so rarely used.
+<ul>
+	<li>Changing generated code does not reflect back to the initial UML class-diagram (requires re-layouting) and vice versa.</li>
+	<li>Re-generating model might overwrite customized changes.</li>
+</ul>
+Various modelling tools are trying to fix this by providing java-editing functionality in UML editor and providing "smart" change detections etc.
+
+It's too complex to be correct!
+
+This hacking looks similar to a situation where you decompile .class files to extend them and hope that changes in .class files are reflected back to the .java source (which would be also Cooool!).
+
+I propose that meta-model and it's generated artifacts should be taken as any other java library. You write, compile, package, ship. Changes to the model are made straight to the model. Easy, logical. And has a critical WHAT IF: tailoring.
+
+Java source has almost no problem with model-driven approach: all generated java files can be generated as read-only/write-anytime abstract classes that are extended by one-time-generated java file stubs being empty classes with "extends abstractyourmodelledobject".
+
+These empty java-stubs can be edited as much as possible (but changes are not reflected back to the model). If reflecting is required then change should go to the uml model which overwrites read-only Abstract class.
+
+The other issue (most concerning) is artifacts generated for user-interfaces.
+
+I have no clue how to make such extend-style form or field generators.
+
+For example, model could generate entire edit form for create/read/write operations but I'm willing to customize one row depending on user permissions.
+
+How could I overwrite one field or area of generated code in JSP without modifying model-driven file?
+
+In more general, how should one organize View layer elements to provide such model-based UI-experience...
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

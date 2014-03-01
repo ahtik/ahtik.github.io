@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Eclipse 3.3M5 is not working out of the box with Gentoo</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Eclipse 3.3M5 is not working out of the box with Gentoo</h2>
+<p class="meta">11 Feb 2007</p>
+
+<div class="post">
+<strong>At least not for me and at least not out of box using package from download.eclipse.org: <a href="http://www.eclipse.org/downloads/download.php?r=1&protocol=http&file=/eclipse/downloads/drops/S-3.3M5-200702091006/eclipse-SDK-3.3M5-linux-gtk.tar.gz">eclipse-SDK-3.3M5-linux-gtk</a> :)</strong>
+
+ahti@ahtuxhome /opt/eclipse-SDK-3.3M5 $ ./eclipse
+* run-java-tool is not available for sun-jdk-1.6 on i686
+* IMPORTANT: some Java tools are not available on some VMs on some architectures
+
+This problem is with any JRE and nichoj from #gentoo-java seems to have a pretty good explanation:
+"At some point, it must be trying to be smart, and figure out what /usr/bin/java points to, and trying to invoke that. Which does point to run-java-tool,but that shouldn't be invoked directly."
+
+To run your gentoo box with the latest and most amazing milestone ever please cajole your gentoo-beauty with following:
+
+<strong>./eclipse -vm $(java-config --java)</strong>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

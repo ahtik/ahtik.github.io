@@ -1,0 +1,28 @@
+---
+layout: post
+title: Getting unsigned bytes in java
+categories:
+- Java
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '248483169'
+---
+Welcome back after long overwork and vacation period :) Let's start small, it's still almost summer.
+
+Bytes in java are always signed and are quite horrible to use because of the casting and weird side-effects (or I'm just stupid enough to call it weird).
+
+But we need unsigned bytes quite a lot. Most of the time for reading various streams (networks, 8bit strings etc) some text stream you still end up with byte streams.
+
+There is a nice trick converting them from signed to unsigned in case you want to get normal 0..255 range for the chars.
+
+<blockquote>
+byte mybyte = -104;
+long mynewint = mybyte & 0xFF;
+</blockquote>
+
+Hope it helps!
+
+I had quite a nice puzzling while trying to find some easier way. Is there?

@@ -1,0 +1,28 @@
+---
+layout: post
+title: Fixing slow performance with Eclipse update site installs
+categories:
+- Eclipse
+- Tips
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  dsq_thread_id: '822984672'
+---
+<p><b>Keep one checkbox checked and your Eclipse update site installs can be maddeningly slow.</b></p>
+<p>At the Install dialog <b>uncheck</b> "Contact all update sites during install to find required software".</p>
+
+<a href="http://ahtik.com/blog/2012/08/29/fixing-slow-performance-with-eclipse-update-site-installs/"><img border="0" src="/blog/wp-content/uploads/2012/08/eclipse-install-dialog2.png"/></a>
+<p><b>Could there be any tricks to publish a plugin in a way that dependencies never trigger contacting all update sites?</b></p>
+
+<p>Ending this tiny post with a few other update-site-tips:</p>
+<p><b>Tip of the day #2:</b> Fastest way to <b>install</b> from any update site: Help->Install New Software...->[Paste URL to "Work with:" and hit ENTER!]</p>
+
+<p><b>Tip of the day #3:</b> Fastest way to <b>update</b> a plugin from an update site: Help->About->Installation Details->Update <b>is not</b> the fastest because it still contacts all the other update sites. Possibly faster: Help->Install New Software...->[Paste URL to "Work with:" and hit ENTER!] or select from the drop-down.<br/>
+If update site was updated while Eclipse was running then click "Available Software Sites", look up your update site and hit "Reload". After reload close the Install dialog and open it again.
+</p>
+
+<p>&nbsp;</p>

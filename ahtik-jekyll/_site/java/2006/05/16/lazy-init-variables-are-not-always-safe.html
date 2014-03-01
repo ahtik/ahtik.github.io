@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Lazy-init variables are not always safe</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Lazy-init variables are not always safe</h2>
+<p class="meta">16 May 2006</p>
+
+<div class="post">
+Have you ever used following to lazy-initialize your variable?
+
+<img id="image8" alt="codeshot.png" src="http://ahtik.com/blog/wp-content/uploads/2006/05/codeshot.png" />
+If you have then don't.
+
+Just to remind or introduce, it looks OK but it isn't - this is a pretty serious bug you can easily make.
+
+And it's called Double-Checked Locking.
+Very good and easy-to-understand explanation is <a target="_blank" href="http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html">here</a>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

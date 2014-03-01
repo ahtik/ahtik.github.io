@@ -1,0 +1,24 @@
+---
+layout: post
+title: Eclipse 3.3M5 is not working out of the box with Gentoo
+categories:
+- Eclipse
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: ''
+---
+<strong>At least not for me and at least not out of box using package from download.eclipse.org: <a href="http://www.eclipse.org/downloads/download.php?r=1&protocol=http&file=/eclipse/downloads/drops/S-3.3M5-200702091006/eclipse-SDK-3.3M5-linux-gtk.tar.gz">eclipse-SDK-3.3M5-linux-gtk</a> :)</strong>
+
+ahti@ahtuxhome /opt/eclipse-SDK-3.3M5 $ ./eclipse
+* run-java-tool is not available for sun-jdk-1.6 on i686
+* IMPORTANT: some Java tools are not available on some VMs on some architectures
+
+This problem is with any JRE and nichoj from #gentoo-java seems to have a pretty good explanation:
+"At some point, it must be trying to be smart, and figure out what /usr/bin/java points to, and trying to invoke that. Which does point to run-java-tool,but that shouldn't be invoked directly."
+
+To run your gentoo box with the latest and most amazing milestone ever please cajole your gentoo-beauty with following:
+
+<strong>./eclipse -vm $(java-config --java)</strong>

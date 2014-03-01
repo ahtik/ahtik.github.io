@@ -1,0 +1,42 @@
+---
+layout: post
+title: Desktop is alive
+categories:
+- Business
+- Eclipse
+- Java
+- Technology
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '2'
+  dsq_thread_id: '609234311'
+---
+<p class="lead">
+In the midst of web startups it's too easy to miss the opportunity in non-web environments. <a href="http://python.org">Python</a> and <a href="http://java.com">Java</a> are still strong candidates for your next startup frontend. As long as one gets the distribution and business behind the product right.
+<!--More importantly, let's see how to merge web and social features with a non-web app.-->
+</p>
+
+<p>Success stories like <a href="http://www.minecraft.net/">MineCraft</a> keep popping up from time to time. Behind the scenes it's built with Java. As of today MineCraft has ~24 million registered users, of which ~5 million have bought the game. Most of them with a price of €19.95 (but they did start with a huge discount). In the last 24 hours, 60K people registered, and 8K people bought the game. (Source: <a href="http://www.minecraft.net/stats">http://www.minecraft.net/stats</a>).
+
+<p>We keep hearing that desktop apps are hard to install and maintain. I don't think Java is a cumbersome environment if 12-16 year boys and girls manage to get tens of thousands MineCraft servers running at their homes. Millions of regular Minecraft players run Java apps without an issue. There are thousands of plugins and mods written in Java for MineCraft server and client. Java is great for that but it's way too easy to bash the platform if the real problem is usually in the <b>product</b> and <b>distribution</b>!</p>
+
+
+<p>Let me share with you some of the user conversion stats in one of our own desktop apps, <a href="http://www.timegt.com">TimeGT</a>. TimeGT is a task and life management app that is written in Java. It has an installer for Windows that includes Java runtime environment so user doesn't have to install Java by herself. So far 99.1% of users who register their account at the website end up installing the app successfully and logging in with their username. That means essentially that every ~100th user has an issue with the desktop setup. For TimeGT case it's very likely Mac issue as we don't provide a .dmg file and running it in Mac is painful.</p>
+
+<p>Eclipse IDE requires Java. OpenOffice requires Java. So does Adobe Photoshop. I believe it's safe to say that you can still build great and massively popular stuff without falling into building on top of technology which was initially poured over with millions of dollars mostly to sell more ads, own more of your screen estate. Don't get me wrong. 
+Of course web apps are perfectly natural for oh so many user cases. I'm still overly excited and thankful that web got a technological and distrubution kick at this scale. Oh. And building beautiful things is so much easier with the web instead of hacking with a Java Swing or SWT UI toolkit. Just know where the fine line is.</p>
+
+<h2>The road ahead with desktop and Java</h2>
+<p>I guess the challenges evolve around <b>maintaining updates</b> and <b>supporting platforms (read: devices)</b>.</p>
+<p>I'm not worried about the updates. It's a feasible engineering task. In TimeGT we have automatically pushed updates (yes, requires restarting your app but so does Android and iPhone app!).</p>
+<p>But getting your Java app to devices like Android and iPhone is not fun. I'm not sure how it all gets to a sensible place where you don't have to over-abstract for the sake of single-sourcing yet avoiding idiotic rewriting of app in different languages.</p>
+
+<h2>Small footnote on desktop coding experience</h2>
+<p>While <a href="http://www.eclipse.org">Eclipse</a> remains to be the most popular IDEs around and provides a wonderful Java editor and extending capability, it scares me how its initial advantage of being fast and snappy is diminishing and people keep turning their heads toward vi/vim, <a href="http://www.sublimetext.com/2">SublimeText 2</a> and TextMate even for Java and Scala. You might think that a real IDE with full AST parsing and class model navigation is required for any reasonably sized projects but I keep seeing people hacking more and more with their text editors. I hope to see a change here. Get an IDE that is as fast for coding as vim.</p>
+
+<p>Eclipse core itself is super fast and gets improved all the time but as with Chrome browser - plugins slow life down. There should be more control on seeing which plugins conserve most resources and a quick method to kill them, just as you close tabs in Chrome.</p>
+
+<p>One project contains many different file types, they must blend into <b>one</b> hacking experience.</p>

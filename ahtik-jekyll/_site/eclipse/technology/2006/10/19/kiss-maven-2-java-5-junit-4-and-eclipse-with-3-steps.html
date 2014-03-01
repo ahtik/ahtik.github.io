@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Maven 2, Java 5, JUnit 4 and Eclipse with 3 steps!</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Maven 2, Java 5, JUnit 4 and Eclipse with 3 steps!</h2>
+<p class="meta">19 Oct 2006</p>
+
+<div class="post">
+<strong>STEP 1 - Create project</strong>
+mvn archetype:create -DgroupId=com.timegt.core -DartifactId=timegt-core
+
+<strong>STEP 2 - Fix pom.xml</strong>
+1. replace name and url
+2. replace 3.8.1 with 4.1 for junit-4.1 support
+3. add this for JDK 5.0 support:
+
+<code>&lt;build&gt;
+&lt;plugins&gt;
+&lt;plugin&gt;
+&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+&lt;configuration&gt;
+&lt;source&gt;1.5&lt;/source&gt;
+&lt;target&gt;1.5&lt;/target&gt;
+&lt;/configuration&gt;
+&lt;/plugin&gt;
+&lt;/plugins&gt;
+&lt;/build&gt;</code>
+
+<strong>STEP 3 - Generate eclipse project settings and download/link sources</strong>
+mvn eclipse:eclipse -DdownloadSource
+Voila! Ready to go :)
+
+Open Eclipse and <strong>Import existing project into workspace.</strong>
+
+<img src="http://ahtik.com/blog/wp-content/uploads/2006/10/eclipse3.png" />
+
+Project structure, sample class and sample junit test is now created and eclipse is ready to rock!
+
+After that you can do
+mvn compile
+mvn test
+mvn package
+mvn install
+mvn clean
+or whatever makes you happy.
+
+Repeat "mvn eclipse:eclipse" whenever you change maven dependencies.
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

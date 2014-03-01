@@ -1,0 +1,29 @@
+---
+layout: post
+title: Welcome back, dear word-wrap
+categories:
+- Eclipse
+- Java
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '252292182'
+---
+At first sorry about those who have been checking for an update of this blog for a month. Regardless of this inactivity there have been quite a lot visitors. I'm glad to see that people like what I'm doing. <strong>Thank you!</strong>
+
+There have been busy days and let's admit - weather in Estonia has been shiny and warming :)
+
+Amazing how much feedback and interest has eclipse word-wrap plugin generated. Before starting this project I didn't realize how important wordwrapping is for so many of us. <img align="left" style="padding: 10px" src="http://ahtik.com/blog/wp-content/uploads/2006/08/ahtisurf2.png" />All(most) java developers have been wasting time on scrolling just to see all implemented interfaces. People are really using first versions of wordwrap and are eagerly waiting for a version that works properly with line numbers etc.
+What they do not know is how complex this will be :)
+
+No hope is lost and I'm still working to come up with a better version. New versions of plugin were delayed because I just couldn't use any of the code from the first version. It used mechanisms that are poorly designed in eclipse (more specificly StyledText and it's wrap flag).  Or, let's rephrase it for the sake of political correctness - StyledText is not meant to provide separate model for wrapped text. But different editor components need different kind of models (wrapped and unwrapped).
+
+The other critical issue is with the performance. At least for now there are going to be two duplicated and synchronized models: wrapped and unwrapped. It would be ok to have wrapped model only for the visible part but eclipse viewer mechanism is not supporting this idea very well. Because of this and several other factors not mentioned here it's not very likely that word wrap feature will be in eclipse core in near future (1-2 years?).
+
+We decided to take a bit different approach than planned and I'm creating an installable plugin that is patching your eclipse platform text component. There will be an option for turning word wrap on and off. But more about it later when there is a package ready that is at least as usable as was the version 0.0.2.
+
+As you see, I've added a new tab at the top of this blog - "Eclipse Word-Wrap". It will have a better face and content as soon as the new version of plugin comes out - my promise. So far it's a place for grabbing the eclipse update url.
+
+Stay tuned and have fun, you word wrap freaks :)

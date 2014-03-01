@@ -1,0 +1,80 @@
+---
+layout: post
+title: Avoid useless Plugin Initialization and/or Class Loading
+categories:
+- Eclipse
+- Java
+- Tips
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '248483122'
+---
+<b>Here's a tip for initializing your plugins or any other singleton-like repository only when needed.</b>
+
+<p>Consider a code like this:
+<pre style="background:#F6F6F6">
+if (isConfigurable()) {
+  Bundle bundleCopy = bundle;
+  Preferences[] preferencesCopy = new Preferences[1];
+  preferencesCopy[0] = new org.eclipse.core.internal.
+			preferences.legacy.PreferenceForwarder(
+			this, bundleCopy.getSymbolicName());
+  return preferencesCopy;
+}
+return null;
+</pre>
+</p>
+
+<p><b>Do you see what's wrong there?</b></p>
+
+<p><b>The problem is that if your #isConfigurable is always FALSE then your code still:</b>
+<ol>
+<li>loads PreferencesForwarder class
+<li>initializes all PreferencesForwarder's static variables
+<li>forces Preferences plugin to load
+</ol>
+</p>
+
+<p>Always, if possible and makes sense, isolate your class loading into a simple Runnable inner class if there is some static init or plugin activation trigger involved!</p>
+
+<p>Then the code would become:
+<pre style="background:#F6F6F6">
+if (isConfigurable()) {
+  final Bundle bundleCopy = bundle;
+  final Preferences[] preferencesCopy = new Preferences[1];
+  Runnable innerCall = new Runnable() {
+    public void run() {
+      preferencesCopy[0] = new org.eclipse.core.internal.
+			       preferences.legacy.PreferenceForwarder(
+				 this, bundleCopy.getSymbolicName());
+    }
+  };
+  innerCall.run();
+}
+return null;
+</pre>
+</p>
+
+<p>When you think of it - this pattern is somewhat similar to the singleton pattern implementation - the one of the very few thread-safe and fast singleton patterns that is bugfree and truly lazy!</p>
+
+<p>Quoting <a href="http://en.wikipedia.org/wiki/Singleton_pattern#Java">wonderful singleton impl from wikipedia</a>:
+<pre style="background:#F6F6F6">
+public class Singleton {
+   private Singleton() {}
+   private static class SingletonHolder {
+     private final static Singleton INSTANCE = new Singleton();
+   }
+   public static Singleton getInstance() {
+     return SingletonHolder.INSTANCE;
+   }
+ }
+</pre>
+(OK, to be fully honest, since java1.5 you can also trust volatile flags but - trust noone, use the old stuff:P)
+</p>
+
+<p>For the reference, the PreferencesForwarder example was taken from the org.eclipse.core.runtime.Plugin#getPluginPreferences class and modified a bit.</p>
+
+<p><b>UPDATE: This post is not fully correct! Never assume something to be true even if it comes from a trustworthy source like eclipse core runtime source. Please see the comments for explanation!</b></p>

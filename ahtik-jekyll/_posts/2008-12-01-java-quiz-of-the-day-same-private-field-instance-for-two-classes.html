@@ -1,0 +1,59 @@
+---
+layout: post
+title: Java Quiz of The Day - same private field instance for two classes
+categories:
+- Eclipse
+- Java
+- Tips
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '5'
+  sociableoff: 'false'
+  dsq_thread_id: '248483205'
+---
+<p><strong>What is the smallest change to <i>main</i> method that makes it sysout "true"?</strong></p>
+<p><strong>You are allowed to change ONLY the main method! Of course changing sysout line is out of question.</strong></p>
+
+You can leave your answer in comments and I'll publish/approve them together with the solution.
+
+[java]
+public class InstanceDemo {
+
+	public static void main(String[] args){
+		MyClass cl1 = new MyClass();
+		MyClass cl2 = new MyClass();
+		System.out.println(cl1.ocl==cl2.ocl && cl1!=cl2);
+	}
+
+	private static class MyClass extends java.util.ArrayList {
+		private final Object ocl = new Object();
+	}
+
+}
+[/java]
+
+I'll post the correct answer in 24h :)
+
+<strong>UPDATE:</strong> Was not that hard afterall! :) ~45 correct answers.
+
+Yes, clone() was the answer I was looking for:
+[java]MyClass cl2 = (MyClass) cl1.clone();[/java]
+
+<a href="http://ed-merks.blogspot.com/">Ed Merks</a> surprised with a nice solution:
+[java]
+//Add this line as the first line of main.
+class MyClass extends InstanceDemo.MyClass {
+Object ocl = null;
+}
+[/java]
+
+And a lot of people took the hard-core way:
+[java]
+Field field = cl1.getClass().getDeclaredField("ocl");
+field.setAccessible(true);
+field.set(cl2,cl1.ocl);
+[/java]
+:)

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Can you guess the output? junit and initialization</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Can you guess the output? junit and initialization</h2>
+<p class="meta">15 Dec 2008</p>
+
+<div class="post">
+<strong>Can you guess the output without running the code?</strong>
+
+The relation to Eclipse is simply the fact that big part of eclipse.org is a great example of good test coverage built on top of jUnit. Plus, it was literally pulling my hair out in one of the eclipse-related testing-suites.
+
+I stepped into this a few years ago while bug-fighting a test class that had unexpected initialization.
+
+Pretty sure that many of you know the answer but definitely fun outcome!
+
+As everyone can simply run this snippet yourself I won't delay approving comments, I'll just accept them whenever I get a free moment. This comment system here has captcha but additionally all comments must be approved manually.
+
+<pre name="code" class="java">
+import junit.framework.TestCase;
+public class MyTest extends TestCase {
+private static int count = 0;
+
+{ count++; }
+
+public MyTest() {count++;}
+
+public void test1() { System.out.print(count); }
+public void test2() { System.out.print(count); }
+public void test3() { System.out.print(count); }
+
+}
+</pre>
+
+I'm sure some of us don't always take this behavior into account :)
+
+After figuring this out, SPECIAL fun is a bit modified case:
+<pre name="code" class="java">
+import junit.framework.TestCase;
+public class MyTest extends TestCase {
+private static int count = 0;
+
+{ count=count*2; }
+
+public MyTest() { count++; }
+
+public void test1() { System.out.print(count); }
+public void test2() { System.out.print(count); }
+public void test3() { System.out.print(count); }
+}
+</pre>
+
+For this last snippet I think without running it you won't figure it out :) At least I didn't..
+
+UPDATE: Decent in-depth hi-tech doc about java init <a href="http://www.artima.com/designtechniques/initialization7.html">http://www.artima.com/designtechniques/initialization7.html</a>
+
+UPDATE2: Correct answers were 666 and 777.
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

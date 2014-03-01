@@ -1,0 +1,57 @@
+---
+layout: post
+title: Eclipse Top 5 Annoyances
+categories:
+- Eclipse
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '248483062'
+---
+<strong>Here is the list of Top 5 Eclipse Annoyances we came up today at the coffee-table, possibly nice to share (in the order of importance).</strong>
+
+<strong>Also serves as a good wish-list to my Santa Claus!</strong>
+
+<strong>1. Update Manager</strong>
+
+With the help of <a href="http://wiki.eclipse.org/Equinox_p2_PDE_Integration">p2 provisioning</a> and hard work this will be hopefully solved for 3.5. Please don't mess it up this time! :)
+
+There was also some provisioning-related work done as part of <a href="http://wiki.eclipse.org/UI_for_the_equinox_provisioning">2007 Google Summer of Code</a>.
+
+When talking about "enemies" - Netbeans update manager is much more decent (yet less flexible)
+
+<strong>2. Cannot have editors for "no-extension" files</strong>
+<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=46297">no-Extension-Support bugzilla</a>
+
+Well, files without an extensions SHOULD be treated as any regular file - don't make them feel like crap! :)
+
+YET! At the same time we treat filenames without a filename properly - .project has the extension but no filename :P
+
+<strong>3. Opening files from command line</strong>
+<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=4922">command-line file opening bugzilla
+</a>
+
+Getting closer I hope, there is a <a href="http://wiki.eclipse.org/Eclipse_Web_Interface">summer-of-code project related to command line commands</a> (about triggering eclipse actions from web-sites). Plus a proof-of-concept thin text-editor <a href="http://padclipse.sourceforge.net/">padclipse</a>.
+
+Dear Eclipse, give command-line file-open and other configurable command line options. My neighbor Netbeans has it, I want it too.
+
+<strong>4. Word Wrap</strong>
+<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=35779">word wrap bugzilla</a>
+
+HAHAHA! You can take it from here, <a href="http://ahtik.com/blog/eclipse-word-wrap/">the official eclipse word wrap page</a>. It works but has it's drawbacks like bugs with ruler line numbers etc.
+More seriously - it won't be there in any near timeframe IMHO. Architecturally there has been a little flaw in the very core of Eclipse - SWT.
+
+In SWT StyledText making up all these editors is missing a difference between physical and visual line numbers. Because of that a lot of plugins use one set of API methods for both visual and physical line numbers. To make sure transition is causing no harm, existing API should probably keep showing physical line numbers. But that would break quite a few things - rulers etc.
+
+Not sure how many 3rd party plugins use line info and how to treat them nice while transitioning. Or if that ever happens.
+
+<strong>5. Split Editor</strong>
+<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=8009">Split Editor bugzilla link</a>
+
+What the heck is with this feature? People vote and ask for it.
+
+Do you really need this? You can have many editors for the same file anyway just by choosing New Editor from the tab view popup.
+
+<strong> What's your greatest Eclipse New-Year-Wish?</strong>

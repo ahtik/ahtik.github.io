@@ -1,0 +1,44 @@
+---
+layout: post
+title: Adding SPDY support to Play framework 2.0.1
+categories: []
+tags: []
+status: draft
+type: post
+published: false
+meta:
+  _edit_last: '1'
+  _oembed_2497d66372c8eb4849402c4c18d2ba8a: ! '{{unknown}}'
+---
+Update framework/project/Build.scala
+"io.netty"                          %    "netty"                    %   "3.3.0.Final",
+to
+"io.netty"                          %    "netty"                    %   "3.3.1.Final",
+
+run build in framework dir.
+
+Copy ssl_npn-0.2-SNAPSHOT.jar from https://github.com/downloads/benmmurphy/ssl_npn/ssl_npn-0.2-SNAPSHOT.jar
+to your playframework framework/lib dir.
+OR
+http://repo2.maven.org/maven2/org/mortbay/jetty/npn/npn-boot/8.1.2.v20120308/npn-boot-8.1.2.v20120308.jar
+java -Xbootclasspath/p:npn-boot-8.1.2.v20120308.jar
+
+Run with java 7!
+
+Update framework/sbt  play.boot.properties and sbt.boot.properties
+to use scala 2.9.2 and sbt 0.11.3
+
+If you get
+type mismatch; found : play.api.mvc.Handler required: Handler
+then it means wrong java version was used to compile the playframework.
+
+From https://github.com/playframework/Play20/wiki/BuildingFromSource
+cd Play20/framework
+$ ./build
+> build-repository
+Once in the sbt console, run build-repository to compile and build everything. This will also create the local Ivy repository containing all of the required dependencies.
+
+Note that you don’t need to install sbt yourself: Play 2.0 embeds its own version (currently sbt 0.11.2).
+If you want to make changes to the code you can use compile and publish-local to rebuild the framework.
+
+mvn install:install-file -DgroupId=npnhack -Dpackaging=jar -DartifactId=npnlib -Dversion=0.2 -Dfile=ssl_npn-0.2-SNAPSHOT.jar -DgeneratePom=true

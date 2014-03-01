@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>More is not better: Eclipse Quick Switch Editor revisited</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>More is not better: Eclipse Quick Switch Editor revisited</h2>
+<p class="meta">10 Jan 2007</p>
+
+<div class="post">
+One thing that netbeans does well is to support multiple rows of tabs for opened editors. Eclipse on the other hand makes these tabs just as unusable as Firefox after having more than 10 pages/editors open. I think it is possible to improve the usability. But how?
+
+<!--more-->
+<h2>How is this fixed?</h2>
+I always thought that Quick Switch Editor (default binding Ctrl+E) is meant to overcome "no multiple tab-rows" shortcoming and basically provides a vertical and filterable way of selecting one of the tabs/open files.
+
+Now as Quick Switch Editor is redesigned to support more contexts (selecting perspectives etc) I'm not sure anymore and it has become a bit unusable for quick editor switching : (
+
+<img src="http://ahtik.com/blog/wp-content/uploads/2007/01/quickswitch.png" />
+<h2>Pimp My File</h2>
+Well. I would make it configurable for Quick Switch Editor to work with Open Editor context and dock it to the page or set it as a fast view.
+
+Plus a tiny extra for the filter: as long as unfiltered list is shorter than 20 items it makes sense to use "*" as automatic and hidden pattern prefix. Makes selection many times faster and improves usability. At least for me as my quickest way to get "*" is to reach to the keyboard's numpad. I like to filter by typing any region of the string, not just the beginning.
+<h2>Final Note</h2>
+If the new Quick Switch Editor approach is meant to work for other use-cases as well then of course 3rd party plugins can be easily written that work as a view or fast view and shows the list of open files (or recently edited files or recently opened but unmodified files or whatever you possibly might want). Kind of Mylar playground, huh? Time to switch :)
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

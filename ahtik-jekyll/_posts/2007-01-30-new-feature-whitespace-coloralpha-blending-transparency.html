@@ -1,0 +1,40 @@
+---
+layout: post
+title: ! 'New Feature: Whitespace color/alpha blending (transparency)'
+categories:
+- Eclipse
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '248483036'
+---
+<strong>Eclipse 3.3M4 introduced a cool feature called "Show invisible whitespace characters" (see <a target="_blank" href="http://download.eclipse.org/eclipse/downloads/drops/S-3.3M4-200612141445/eclipse-news-M4.html">3.3M4 News</a>). Unfortunately some of us find it a bit too visible.</strong>
+
+Let's make Eclipse a better place to live, right? I have created a patch that makes the visibility configurable via preferences page:
+
+<img align="middle" src="http://ahtik.com/blog/wp-content/uploads/2007/01/Whitespace-preferences2.png" />
+Continue reading to download this feature (three patched plugins for Eclipse 3.3M4).<strong>
+</strong>
+
+<!--more-->
+
+<strong>Instructions for patching your Eclipse 3.3M4.</strong>
+
+The enhancement with the patch is registered as bugzilla item <a target="_blank" href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=172076">#172076</a>.
+If you wanna play safe then wait for 3.3M5 or 3.4x to get this included (it might never happen).
+Another option is to patch your little 3.3M4ish beauty by yourself. Do this:
+<ol>
+	<li>Exit Eclipse</li>
+	<li>Backup and <strong>remove</strong> following files from ECLIPSE_ROOT/plugins:
+org.eclipse.jface.text_3.3.0.v20061213-1300b.jar
+org.eclipse.ui.editors_3.3.0.v20061213-1300b.jar
+org.eclipse.ui.workbench.texteditor_3.3.0.v20061213-1300b.jar</li>
+	<li>Download following files into the same directory (ECLIPSE_ROOT/plugins):
+<a href="http://ahtik.com/patches/whitespace/org.eclipse.jface.text_3.3.0.patched20070130-0035.jar"> org.eclipse.jface.text_3.3.0.patched20070130-0035.jar</a>
+<a href="http://ahtik.com/patches/whitespace/org.eclipse.ui.editors_3.3.0.patched20070130-0034.jar"> org.eclipse.ui.editors_3.3.0.patched20070130-0034.jar</a>
+<a href="http://ahtik.com/patches/whitespace/org.eclipse.ui.workbench.texteditor_3.3.0.patched20070130-0035.jar"> org.eclipse.ui.workbench.texteditor_3.3.0.patched20070130-0035.jar</a></li>
+	<li>Start Eclipse and check for the fine-tuned "Text Editors" preference page.</li>
+</ol>
+Have fun :)

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Enabling 3D with ATI and NVIDIA - ubuntu and debian</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Enabling 3D with ATI and NVIDIA - ubuntu and debian</h2>
+<p class="meta">05 Feb 2008</p>
+
+<div class="post">
+<b>hmm.. getting 3D enabled for ATI and NVIDIA is still very tricky. With ubuntu you can recompile a kernel package AND/OR recompile restricted modules AND/OR compile a custom kernel with ATI/NVIDIA modules. There are 4-5 different options for getting it done. Each has it's drawbacks. And even after spending lot of time figuring it out - next time you update the kernel, you're screwed again :)</b>
+
+You can scratch your head for hours wondering why everything should work but glxinfo shows Mesa as active driver. You need direct rendering! Even if you're not playing any games. 2D rendering saves a lot of CPU and linux runs much faster.
+
+For ATI, when you download the linux proprietary driver installer - I've never seen it working without any special tweaks. Plus their installation guide is quite out-dated and not in sync with the real installer.
+
+SO - Here's the lifesaver - <a href="http://www.albertomilone.com/nvidia_scripts1.html">Envy</a>! It's a small utility that takes care of these tweaks and with a very simple user-interface fetches all the important packages, installs all the properietary stuff and makes sure that conflicting drivers are disabled/uninstalled/removed.
+
+I gave it a try and - this thingy started from scratch and - <b>I was done in 5minutes - everything working great!</b>
+
+<p><img src="http://ahtik.com/blog/wp-content/uploads/2008/02/Screenshot-Envy.png"/><br/>
+<i>Envy main screen</i>
+</p>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

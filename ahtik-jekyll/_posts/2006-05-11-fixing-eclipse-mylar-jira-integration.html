@@ -1,0 +1,27 @@
+---
+layout: post
+title: Fixing Eclipse Mylar jira integration
+categories:
+- Eclipse
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  dsq_thread_id: '248482874'
+---
+Be aware that when adding new jira source to Mylar with HTTPS protocol then you MIGHT get error saying host not found or wrong username&password.
+
+The reason for this could be missing certificate in your trusted keystore.
+
+<strong>Here's how to fix it:</strong>
+<ol>
+	<li>Run: openssl s_client -connect your.secured.host.com:https</li>
+	<li>Copy-paste certificate from previous output to text-file (for example /tmp/key2trust.pem).
+Be sure to include BEGIN and END CERTIFICATE rows!!</li>
+	<li>Run: keytool -import -alias your.secured.host.com -keystore
+/home/ahtik/.eclipsekeystore -file /tmp/key2trust.pem</li>
+	<li>Edit eclipse.ini in eclipse home dir to have -Djavax.net.ssl.trustStore=/home/ahtik/.eclipsekeystore</li>
+	<li>Start Eclipse and be sure to run with Java 5!</li>
+	<li>Let me now if it didn't help.</li>
+</ol>

@@ -1,0 +1,39 @@
+---
+layout: post
+title: First alpha of eclipse word wrap released!
+categories:
+- Eclipse
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '5'
+  sociableoff: 'false'
+  dsq_thread_id: '248482863'
+---
+First experimental version (0.0.1) of eclipse word/line wrapping is now released to test plugin release cycle, update-site
+structure and deliver almost working version of wordwrap!
+<!--more-->
+
+The first version of word wrap is using eclipse SWT own wrap functionality that is disabled in eclipse SDK text/java editors. This plugin is basically just providing context menu option to turn this wrap on/off for active editor. It should be usable enough and I'll encourage everyone to give it a try - it will make your life easier!
+
+<strong>And now comes the warning!</strong>
+
+<img align="right" src="http://ahtik.com/blog/wp-content/uploads/2006/06/wrapmenu.png" />Current alpha-version of Virtual Word Wrap does not work properly with line numbers, line highlight etc! But this error is just temporary - after turning wrap off you should have everything back to normal.
+
+I'm definetaly working on this rendering issue and maybe eclipse StyledText wrap cannot be used at all to keep this wrap functional for line highlights etc. It would be possible but this will most probably require rewriting all affected plugins - which is too much!
+
+<strong>Getting wordwrap-0.0.1</strong>
+
+I've set up eclipse update site <a title="Wordwrap eclipse update site" target="_blank" href="http://ahtik.com/eclipse-update/">http://ahtik.com/eclipse-update/</a> that you can add as a remote update site in eclipse and just go ahead to install first alpha-version of wordwrap!
+
+<strong>UPDATE!</strong>
+
+<strong>Reporting errors</strong>
+
+Add any errors you encounter as comments to this post.
+Also send .log from workspace/.metadata/ directory to ahti.kitsik@gmail.com
+
+Please do not report bugs about damaged rendering of line highlight, line numbers and other rendering-related issues.
+But no harm done if you do - then I'm able to notify you when issues are fixed.

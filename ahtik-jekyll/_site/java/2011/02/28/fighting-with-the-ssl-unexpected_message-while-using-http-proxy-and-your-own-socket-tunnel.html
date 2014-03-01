@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Fighting with the SSL "unexpected_message" while using HTTP proxy and your own socket tunnel</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Fighting with the SSL "unexpected_message" while using HTTP proxy and your own socket tunnel</h2>
+<p class="meta">28 Feb 2011</p>
+
+<div class="post">
+<p><b>Whenever you write an application that should support http proxies with your own custom SSLSocketFactory, you MIGHT run into a problem...</b></p>
+
+<p>Java JRE in itself supports proxies for HTTPS but it does <strong>NOT</strong> support SSL connections over proxy. For that you'll need to create a separate proxy tunneling socket and layer it on top of the actual SSL connection. So far so good but there's a nasty exception that can take you ages to figure out:
+</p>
+<p>
+<pre name="code" class="java">
+Caused by: javax.net.ssl.SSLException: Received fatal alert: unexpected_message
+	at com.sun.net.ssl.internal.ssl.Alerts.getSSLException(Alerts.java:190)
+	at com.sun.net.ssl.internal.ssl.Alerts.getSSLException(Alerts.java:136)
+	at com.sun.net.ssl.internal.ssl.SSLSocketImpl.recvAlert(SSLSocketImpl.java:1682)
+	at com.sun.net.ssl.internal.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:932)
+	at com.sun.net.ssl.internal.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1112)
+	at com.sun.net.ssl.internal.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1139)
+	at com.sun.net.ssl.internal.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1123)
+</pre>
+</p>
+
+<p>There can be many reasons but one of the unexpected ones -- make sure to add<br/>
+Pragma: no-cache<br/>
+to your http proxy CONNECT request header! Otherwise you'll get this exception.
+</p>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

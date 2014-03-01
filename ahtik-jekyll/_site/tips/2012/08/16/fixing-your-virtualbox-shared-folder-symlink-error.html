@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Fixing your virtualbox shared folder symlink error</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Ahti Kitsik / ahtik</a></h1>
+            <a class="extra" href="/">home</a>
+          </div>
+
+          <h2>Fixing your virtualbox shared folder symlink error</h2>
+<p class="meta">16 Aug 2012</p>
+
+<div class="post">
+<p><b>Operations such as installing node.js or python virtualenv to a virtualbox writable shared folder can fail if you try to do this as a linux (ubuntu) virtualbox guest running Windows 7 host.</b></p>
+
+<p>The cause is symlink permission.</p>
+<p>Typical error:</p>
+<pre>
+ln -fs out/Release/node node
+ln: failed to create symbolic link `node': Read-only file system
+</pre>
+It can also be a "Protocol error".
+
+<p>This happens even if your shared folder is writable.</p>
+
+<h2>Fix: Enable symlinks feature in VirtualBox</h2>
+Run at cmd prompt:
+<pre name="code" class="c-sharp">
+VBoxManage setextradata YOURVMNAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/YOURSHAREFOLDERNAME 1
+</pre>
+
+<p>Verify by running:</p>
+<pre name="code" class="c-sharp">
+VBoxManage getextradata YOURVMNAME enumerate
+</pre>
+
+<p>If your user belongs to Administrators group then start VirtualBox with "Run as Administrator"!</p>
+<h2>If user is not in Administrators group</h2>
+<p>By default Windows 7 security policy does not allow creating symlinks as it's a potential security threat. Run "secpol.msc" and navigate to "Local Policies-User Rights Assignments" and add your user to "Create symbolic links". I didn't try that but could be that after that virtualbox could be run as a regular user.</p>
+<p><b>Speculation:</b> The controversy is that users with admin group seem to be unable to create symlinks even after granting the permission unless they use "run as admin". Maybe symlink privilege gets filtered out for regular runs when user belongs to Administrators. Any ideas?</p>
+
+<p>Let me know if it helps or if there's an easier way!</p>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Ahti Kitsik<br />
+                Java, Eclipse RCP, Python, Node.js, web apps developer<br />
+                ak@ahtik.com
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/ahtik">github.com/ahtik</a><br />
+                <a href="https://twitter.com/ahtik">twitter.com/ahtik</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>
