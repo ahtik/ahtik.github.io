@@ -14,8 +14,11 @@ var livereload = require('gulp-livereload');
 var lr = require('tiny-lr');  
 var gutil = require('gulp-util');
 var minifycss = require('gulp-minify-css');
-var handlebars = require('gulp-handlebars');
-var mustache = require("gulp-mustache");
+//var handlebars = require('gulp-handlebars');
+var browserify = require('gulp-browserify');
+var browserifyHandlebars = require('browserify-handlebars');
+
+//var mustache = require("gulp-mustache");
 var plumber = require('gulp-plumber');
 var markdown = require('gulp-markdown');
 var less = require('gulp-less'),
@@ -50,17 +53,17 @@ gulp.src('./assets/**.*/.md')
     .pipe(markdown())
     .pipe(gulp.dest('./build/'));
 
-gulp.src("./assets/*.mustache")
-    .pipe(plumber())
-    .pipe(mustache({
-        msg: "Hello Gulp!",
-        nested_value: "I am nested.",
-        another_value: "1 2 3"
-    },{},{
-        some_inner_partial: "<p>{{nested_value}}</p>",
-        another_partial: "<div>{{another_value}}</div>"
-    }))
-    .pipe(gulp.dest("./build/"));
+//gulp.src("./assets/*.mustache")
+//    .pipe(plumber())
+//    .pipe(mustache({
+//        msg: "Hello Gulp!",
+//        nested_value: "I am nested.",
+//        another_value: "1 2 3"
+//    },{},{
+//        some_inner_partial: "<p>{{nested_value}}</p>",
+//        another_partial: "<div>{{another_value}}</div>"
+//    }))
+//    .pipe(gulp.dest("./build/"));
 
 // Compile Our Sass
 gulp.task('sass', function() {
@@ -87,6 +90,16 @@ gulp.task('coffee', function() {
     .pipe(uglify())
     .pipe(concat('all.scss.min.js'))
     .pipe(gulp.dest('build/js'));
+});
+
+gulp.task('scripts', function() {
+    // Single entry point to browserify
+    gulp.src('src/js/app.js')
+        .pipe(browserify({
+            transform: [browserifyHandlebars],
+            debug : !gulp.env.production
+        }))
+        .pipe(gulp.dest('./build/js'))
 });
 
 gulp.task('jsbuild', function() {
