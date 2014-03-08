@@ -7,16 +7,23 @@ var sass = require('gulp-sass');
 var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var imagemin = require('gulp-imagemin');
+
+// Disabled as looks like it's not upgraded to the latest where util is renamed to gulp-util
+// var imagemin = require('gulp-imagemin');
+
 var rename = require('gulp-rename');
 var reload = require('gulp-reload');
 var livereload = require('gulp-livereload');
 var lr = require('tiny-lr');  
 var gutil = require('gulp-util');
 var minifycss = require('gulp-minify-css');
-//var handlebars = require('gulp-handlebars');
+
+var handlebars = require('gulp-handlebars');
+
 var browserify = require('gulp-browserify');
 var browserifyHandlebars = require('browserify-handlebars');
+
+var styl = require('gulp-styl');
 
 //var mustache = require("gulp-mustache");
 var plumber = require('gulp-plumber');
@@ -25,6 +32,8 @@ var less = require('gulp-less'),
     lessOptions = {
         compress: true
     };
+
+var util = require('util');
 
 var server = lr();
 
@@ -70,16 +79,24 @@ gulp.task('sass', function() {
     return gulp.src('./assets/**/*.scss')
         .pipe(plumber())
         .pipe(sass())
-        .pipe(gulp.dest('./build/css'));
+        .pipe(gulp.dest('./build/'));
+});
+
+gulp.task('styl', function() {
+    return gulp.src('./assets/**/*.styl')
+        .pipe(plumber())
+        .pipe(styl())
+        .pipe(gulp.dest('./build/'));
 });
 
 gulp.task('templates', function(){
-    gulp.src(['./assets/**/*.hbs'])
+    gulp.src(['./assets/**/*.hbs', './assets/**/*.handlebars'])
         .pipe(plumber())
         .pipe(handlebars({
             outputType: 'node'
+
         }))
-        .pipe(gulp.dest('build/'));
+        .pipe(gulp.dest('./build/templates/'));
 });
 
 gulp.task('coffee', function() {
@@ -94,12 +111,12 @@ gulp.task('coffee', function() {
 
 gulp.task('scripts', function() {
     // Single entry point to browserify
-    gulp.src('src/js/app.js')
+    gulp.src('./assets/app.js')
         .pipe(browserify({
-            transform: [browserifyHandlebars],
-            debug : !gulp.env.production
+            transform: [browserifyHandlebars]
+            //, debug : !gulp-util.env.production
         }))
-        .pipe(gulp.dest('./build/js'))
+        .pipe(gulp.dest('./build'))
 });
 
 gulp.task('jsbuild', function() {
@@ -114,8 +131,8 @@ gulp.task('jsbuild', function() {
 gulp.task('images', function() {
  return gulp.src('./assets/**/*.png')
     // Pass in options to the task
-    .pipe(imagemin({optimizationLevel: 5}))
-    .pipe(gulp.dest('build/img'));
+    //.pipe(imagemin({optimizationLevel: 5}))
+    .pipe(gulp.dest('./build/'));
 });
 
 // Rerun the task when a file changes
@@ -126,6 +143,9 @@ gulp.task('watch', function () {
       server.changed(file.path);
   });
   gulp.watch('./assets/**/*.scss', ['sass']).on('change', function(file) {
+      server.changed(file.path);
+  });
+  gulp.watch(['./assets/**/*.hbs', './assets/**/*.handlebars'], ['templates', 'scripts']).on('change', function(file) {
       server.changed(file.path);
   });
   gulp.watch('./assets/**/*.png', ['images']).on('change', function(file) {
